@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV File Loader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        #output {
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="loadCSVFromGitHub()">Load CSV from GitHub</button>
+    <div id="output"></div>
+
+    <script>
+        function loadCSVFromGitHub() {
+            // Replace the following URL with the raw URL of your CSV file on GitHub.
+            const githubRawURL = 'https://github.com/carabedo/labs/raw/master/data/data_canasta.csv';
+            
+            // Fetch the CSV file from GitHub
+            fetch(githubRawURL)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(csvContent => {
+                    // Display the CSV content
+                    document.getElementById('output').innerText = csvContent;
+                })
+                .catch(error => {
+                    console.error('Error fetching CSV:', error.message);
+                    document.getElementById('output').innerText = 'Error fetching CSV from GitHub.';
+                });
+        }
+    </script>
+</body>
+</html>
