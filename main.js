@@ -122,7 +122,7 @@ var plotData = Object.values(groupedData);
 
 // Set up the layout
 var layout = {
-    title: 'Price vs Time',
+    title: df_f[0].name,
     xaxis: {
         title: 'Time'
     },
@@ -134,79 +134,3 @@ var layout = {
 // Plot the chart
 Plotly.newPlot('chart-container', plotData, layout);
 }
-
-
-function createChart(dataToChart) {
-    const chartDiv = document.getElementById('chart');
-
-    if (dataToChart.length === 0) {
-        chartDiv.innerHTML = 'No data available for chart.';
-        return;
-    }
-
-    // Extract datetime values
-    const datetimeValues = dataToChart.map(row => row.fecha);
-
-    // Create a simple line chart using D3
-    const margin = { top: 20, right: 20, bottom: 30, left: 50 };
-    const width = 600 - margin.left - margin.right;
-    const height = 300 - margin.top - margin.bottom;
-
-    const svg = d3.select('#chart').append('svg')
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
-        .append('g')
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
-    // Parse the datetime values
-    const parseTime = d3.timeParse('%Y-%m-%d');
-    const x = d3.scaleTime().range([0, width]);
-    const y = d3.scaleLinear().range([height, 0]);
-
-    const line = d3.line()
-        .x(d => x(parseTime(d.datetime)))
-        .y(d => y(d.yourNumericDataField));
-
-    dataToChart.forEach(d => {
-        d.datetime = parseTime(d.datetime);
-        // Add your numeric data field here
-        d.yourNumericDataField = +d.yourNumericDataField;
-    });
-
-    x.domain(d3.extent(dataToChart, d => d.datetime));
-    y.domain([0, d3.max(dataToChart, d => d.yourNumericDataField)]);
-
-    svg.append('g')
-        .attr('transform', 'translate(0,' + height + ')')
-        .call(d3.axisBottom(x));
-
-    svg.append('g')
-        .call(d3.axisLeft(y));
-
-    svg.append('path')
-        .data([dataToChart])
-        .attr('class', 'line')
-        .attr('d', line);
-}
-
-// function loadCSVFromGitHub() {
-//     // Replace the following URL with the raw URL of your CSV file on GitHub.
-//     const githubRawURL = './data_canasta.csv';
-    
-//     // Fetch the CSV file from GitHub
-//     fetch(githubRawURL)
-//         .then(response => {
-//             if (!response.ok) {
-//                 throw new Error(`Network response was not ok: ${response.status}`);
-//             }
-//             return response.text();
-//         })
-//         .then(csvContent => {
-//             // Display the CSV content
-//             document.getElementById('output').innerText = csvContent;
-//         })
-//         .catch(error => {
-//             console.error('Error fetching CSV:', error.message);
-//             document.getElementById('output').innerText = 'Error fetching CSV from GitHub.';
-//         });
-// }
