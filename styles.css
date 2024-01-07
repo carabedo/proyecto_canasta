@@ -26,3 +26,13 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
+
+#searchButton, #filterDropdown {
+    margin-top: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#chart {
+    margin-top: 20px;
+}
