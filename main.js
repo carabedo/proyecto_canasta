@@ -3,7 +3,7 @@ const outputDiv = document.getElementById('output');
 
 d3.csv('./data_canasta.csv').then(function(data) {
     console.log(data.length)
-    document.getElementById('output').innerText = 'Cargados: ' + data.length + ' items.'
+    document.getElementById('output').innerText = '' + data.length + ' registros'
     df=data
     ;
   });
