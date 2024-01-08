@@ -62,7 +62,13 @@ function renderTable(data) {
         // Add more cells based on your API response structure
 
         cell1.textContent = item.id;
-        cell2.textContent = item.name;
+
+        var link = document.createElement('a');
+        link.href = 'http://'+item.url;
+        link.textContent = item.name;
+        cell2.appendChild(link);
+
+        // cell2.textContent = item.name;
         cell3.textContent = item.price;
         cell4.textContent = item.super;
 
