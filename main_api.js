@@ -49,7 +49,14 @@ function getItems(searchTerm){
 
 
 function renderTable(data) {
+
+
+    var tableHead = document.getElementById('dataHead');
+    tableHead.innerHTML = "<tr><th>id</th><th>name</th><th>price</th><th>vendor</th></tr>"; // Clear previous data
+
     var tableBody = document.getElementById('dataBody');
+
+
     tableBody.innerHTML = ''; // Clear previous data
 
     data.forEach(item => {
