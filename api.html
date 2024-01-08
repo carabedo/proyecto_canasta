@@ -14,24 +14,29 @@
         <input type="text" id="searchInput" placeholder="Search..." onkeydown="handleKeyPress(event)">
         <button id="searchButton" onclick="handleSearch()">Search</button>
 
-        <table id="dataTable" border="1">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>price</th>
-                    <th>vendor</th>
-    
-                    <!-- Add more table headers based on your API response structure -->
-                </tr>
-            </thead>
-            <tbody id="dataBody">
-                <!-- Table body will be populated with API response data -->
-            </tbody>
-        </table>
+       
 
 
     </div>
+
+
+    <div class="table-container"> 
+        <table id="dataTable">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>price</th>
+                <th>vendor</th>
+
+                <!-- Add more table headers based on your API response structure -->
+            </tr>
+        </thead>
+        <tbody id="dataBody">
+            <!-- Table body will be populated with API response data -->
+        </tbody>
+    </table></div>
+
 
     <script src="main_api.js"></script>
 
